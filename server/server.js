@@ -1,7 +1,8 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { connectDB, getDBStatus } from './db.js';
+import { connectDB, getDBStatus } from './config/db.js';
 
 import authRoutes from './routes/authRoutes.js';
 import destinationRoutes from './routes/destinationRoutes.js';
@@ -17,11 +18,17 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const connectDB = require('./db');
 
+// Connect to MongoDB Atlas
+connectDB();
 // Middlewares
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Connect Database with auto fallback
+connectDB();
 
 // API Routes
 app.use('/api/auth', authRoutes);
