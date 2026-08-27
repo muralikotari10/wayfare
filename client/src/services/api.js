@@ -1,5 +1,5 @@
-const API_BASE = '/api';
-const TRIPS_API_URL = 'http://localhost:5000/api/trips';
+const API_BASE = 'https://wayfare-backend.onrender.com/api';
+const TRIPS_API_URL = 'https://wayfare-backend.onrender.com/api/trips';
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem('wayfare_token');
